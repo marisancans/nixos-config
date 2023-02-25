@@ -6,6 +6,7 @@
   home.stateVersion = "22.11";
 
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.zsh = {
     enable = true;
@@ -29,13 +30,9 @@
       plugins = [
         "git"
         "thefuck"
-#           {
-#             name = "powerlevel10k-config";
-#             src = ./conf;
-#             file = "zsh-p10k.zsh";
-#           }
+        "fzf"
       ];
-      theme = "fox";
+      theme = "powerlevel10k/powerlevel10k";
     };
   };
 
@@ -57,10 +54,10 @@
   services.lorri.enable = true;
 
   home.packages = with pkgs; [
-    kitty
     htop
     pciutils
     git
+    kitty
 
 
     waybar
@@ -84,12 +81,18 @@
 
     # For zsh powerlevel10k
     meslo-lgs-nf
+
+    thefuck
+    fzf
+    zsh-powerlevel10k
   ];
 
-  programs.kitty.settings.shell = "${pkgs.zsh}/bin/zsh";
+
 
 
   # Copy all dotfiles
-  home.file.".config/hypr".source = .config/hypr;
-
+  home.file.".config/hypr".source = ./dotfiles/hypr;
+  home.file.".config/waybar".source = dotfiles/waybar;
+  home.file.".config/kitty".source = ./dotfiles/kitty;
+  home.file."powerlevel10k".source = "./modules/powerlevel10k";
 }

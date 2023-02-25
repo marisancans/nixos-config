@@ -58,6 +58,13 @@
   # Needed for sway
   security.polkit.enable = true;
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Configure keymap in X11
   services.xserver = {
     layout = "lv";
