@@ -32,7 +32,7 @@
         "thefuck"
         "fzf"
       ];
-      theme = "powerlevel10k/powerlevel10k";
+      theme = "robbyrussell";
     };
   };
 
@@ -84,15 +84,14 @@
 
     thefuck
     fzf
-    zsh-powerlevel10k
   ];
 
 
 
 
   # Copy all dotfiles
-  home.file.".config/hypr".source = ./dotfiles/hypr;
+  home.file.".config/hypr".source = dotfiles/hypr;
   home.file.".config/waybar".source = dotfiles/waybar;
-  home.file.".config/kitty".source = ./dotfiles/kitty;
-  home.file."powerlevel10k".source = "./modules/powerlevel10k";
+  home.file.".config/kitty".source = dotfiles/kitty;
+  home.file."powerlevel10k".source = dotfiles/powerlevel10k;
 }
