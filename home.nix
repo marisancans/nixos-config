@@ -12,21 +12,28 @@
     enable = true;
     shellAliases = {
       ll = "ls -lha";
-#       update = "sudo nixos-rebuild switch";
+      switch = "sudo nixos-rebuild switch --flake .#ma";
+      build = "sudo nixos-rebuild build --flake .#ma";
     };
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./dotfiles/p10k-config;
+        file = "p10k.zsh";
+      }
+    ];
+
     oh-my-zsh = {
       enable = true;
-#       initExtra = ''
-#         if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
-#           [[ ! -f ${configThemeNormal} ]] || source ${configThemeNormal}
-#         else
-#           [[ ! -f ${configThemeTTY} ]] || source ${configThemeTTY}
-#         fi
-#       '';
       plugins = [
         "git"
         "thefuck"
@@ -81,9 +88,12 @@
 
     # For zsh powerlevel10k
     meslo-lgs-nf
+    nerdfonts
 
     thefuck
     fzf
+
+    zsh-powerlevel10k
   ];
 
 
@@ -93,5 +103,4 @@
   home.file.".config/hypr".source = dotfiles/hypr;
   home.file.".config/waybar".source = dotfiles/waybar;
   home.file.".config/kitty".source = dotfiles/kitty;
-  home.file."powerlevel10k".source = dotfiles/powerlevel10k;
 }
