@@ -94,6 +94,11 @@
     fzf
 
     zsh-powerlevel10k
+
+    rofi
+    libusb1
+    wally-cli
+    
   ];
 
 
