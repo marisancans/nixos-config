@@ -98,7 +98,8 @@
     rofi
     libusb1
     wally-cli
-    
+
+    wget
   ];
 
 

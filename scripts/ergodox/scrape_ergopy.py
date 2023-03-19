@@ -46,6 +46,11 @@ def main():
 
     scrape(args)
 
+def enable_download(driver):
+    driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
+    params = {'cmd':'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': download_dir}}
+    driver.execute("send_command", params)
+
 # Program
 def scrape(args):
     import os
@@ -85,6 +90,14 @@ def scrape(args):
         browser.execute_script('window.scrollTo(0, 0)')
         time.sleep(JAVASCRIPT_EXECUTION_TIME)
 
+        # link = browser.find_element(By.LINK_TEXT, "Download this layout").get_attribute('href')
+
+        # elems = browser.find_elements(By.XPATH, "//a[@href]")
+        # for elem in elems:
+            # print(elem.get_attribute("href"))
+
+        # driver.get(DOWNLOAD_URL)
+
         if hide_logo:
             logo = browser.find_element(By.XPATH, '//div[@class=\'ergodox\']/div[@class=\'logo\']')
             browser.execute_script('arguments[0].style.visibility = \'hidden\';', logo)
@@ -103,6 +116,8 @@ def scrape(args):
         if darken_key_outlines:
             browser.execute_script('document.styleSheets[1].insertRule(".key { border: 1px solid black !important; }")')
             time.sleep(JAVASCRIPT_EXECUTION_TIME)
+
+        
 
         screenshot(browser, element)
 
