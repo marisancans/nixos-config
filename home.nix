@@ -100,6 +100,12 @@
     wally-cli
 
     wget
+    filezilla
+    psmisc
+
+    chromium
+    flameshot
+    nodejs
   ];
 
 
