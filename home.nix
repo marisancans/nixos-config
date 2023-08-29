@@ -106,6 +106,25 @@
     chromium
     flameshot
     nodejs
+    qbittorrent
+    vlc
+
+    discord
+    betterdiscordctl
+
+    goofys
+    ffmpeg
+    nomacs
+    colmap
+    simplescreenrecorder
+
+    cudatoolkit
+    nomachine-client
+    imagemagick
+    unzip
+    gimp
+
+    mongodb-compass
   ];
 
 

@@ -16,12 +16,18 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  # VPN
+  networking.wireguard.enable = true;
+
+  # Docker gpu needs this
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+
+
   # Dokur
-  virtualisation.docker.enable = true;
-  
-  virtualisation.docker.rootless = {
+  virtualisation.docker = {
     enable = true;
-    setSocketVariable = true;
+    enableNvidia = true;
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -106,15 +112,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+
+  users.groups.global = {
+    gid = 1000;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ma = {
     isNormalUser = true;
     description = "ma";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "global"];
     packages = with pkgs; [
       firefox
       kate
-    #  thunderbird
     ];
   };
 
