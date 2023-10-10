@@ -125,6 +125,10 @@
     gimp
 
     mongodb-compass
+    libreoffice
+
+    telegram-desktop
+    etcher
   ];
 
 
