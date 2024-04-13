@@ -128,7 +128,8 @@
     libreoffice
 
     telegram-desktop
-    etcher
+    gparted
+    ntfs3g
   ];
 
 
