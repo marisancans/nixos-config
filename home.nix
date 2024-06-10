@@ -130,6 +130,8 @@
     telegram-desktop
     gparted
     ntfs3g
+    nmap
+    sshpass
   ];
 
 
